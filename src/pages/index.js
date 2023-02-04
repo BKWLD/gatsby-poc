@@ -13,20 +13,26 @@ const IndexPage = ({ data }) => {
       <h1>
         Hey, { data.person.name }
       </h1>
+      <p>
+        Would you like to buy a { data.product.title }?
+      </p>
     </main>
   )
 }
 
 export const query = graphql`
-  query GetRobert {
+  query {
     person: contentfulPerson(slug: {eq: "robert-reinhard"}) {
-      id
       name
       image {
-        file {
-          url
-        }
         gatsbyImage(fit: COVER, width: 1024)
+      }
+    }
+    product: shopifyProduct(handle: {eq: "grey-sofa"}) {
+      title
+      variants {
+        title
+        price
       }
     }
   }
