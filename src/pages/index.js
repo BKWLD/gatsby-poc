@@ -1,11 +1,6 @@
 import * as React from "react"
 import { graphql } from 'gatsby'
-
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const IndexPage = ({ data }) => {
   return (
@@ -13,9 +8,17 @@ const IndexPage = ({ data }) => {
       <h1>
         Hey, { data.person.name }
       </h1>
-      <p>
-        Would you like to buy a { data.product.title }?
-      </p>
+      <div>
+        <GatsbyImage
+          image={ data.person.image.data }
+          alt={ data.person.image.alt || "" }/>
+      </div>
+      <p>Would you like to buy a { data.product.title }?</p>
+      <div>
+        <GatsbyImage
+          image={ data.product.image.data }
+          alt={ data.product.image.alt || "" }/>
+      </div>
     </main>
   )
 }
@@ -25,18 +28,25 @@ export const query = graphql`
     person: contentfulPerson(slug: {eq: "robert-reinhard"}) {
       name
       image {
-        gatsbyImage(fit: COVER, width: 1024)
+        alt: title
+        data: gatsbyImageData(width: 200)
       }
     }
     product: shopifyProduct(handle: {eq: "grey-sofa"}) {
       title
-      variants {
-        title
-        price
+      image: featuredImage {
+        alt: altText
+        data: gatsbyImageData
       }
     }
   }
 `
+
+const pageStyles = {
+  color: "#232129",
+  padding: 20,
+  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+}
 
 export default IndexPage
 
