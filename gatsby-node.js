@@ -7,10 +7,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   //     towers: allContentfulTower(limit: 10) {
   //       edges {
   //         node {
-  //           title
-  //           seoImage {
-  //             gatsbyImage(width: 900)
-  //           }
+  //           slug
   //         }
   //       }
   //     }
