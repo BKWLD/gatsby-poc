@@ -1,10 +1,13 @@
 import * as React from "react"
 import { graphql } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
+import { Link } from "gatsby"
 
 const IndexPage = ({ data }) => {
   return (
     <main style={pageStyles}>
+
+      {/* Contentful data with image */}
       <h1>
         Hey, { data.person.name }
       </h1>
@@ -13,12 +16,26 @@ const IndexPage = ({ data }) => {
           image={ data.person.image.data }
           alt={ data.person.image.alt || "" }/>
       </div>
+
+      {/* Shopify data with image */}
       <p>Would you like to buy a { data.product.title }?</p>
       <div>
         <GatsbyImage
           image={ data.product.image.data }
           alt={ data.product.image.alt || "" }/>
       </div>
+
+      {/* Creating links to dynamic routes */}
+      <h2>Other people</h2>
+      <ul>
+        { data.people.nodes.filter(person => !!person.name).map(person => (
+          <li key={ person.id }>
+            <Link to={`/people/${person.slug}`}>
+              { person.name }
+            </Link>
+          </li>
+        ))}
+      </ul>
     </main>
   )
 }
@@ -26,11 +43,7 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
   query {
     person: contentfulPerson(slug: {eq: "robert-reinhard"}) {
-      name
-      image {
-        alt: title
-        data: gatsbyImageData(width: 200)
-      }
+      ...personCard
     }
     product: shopifyProduct(handle: {eq: "grey-sofa"}) {
       title
@@ -39,6 +52,16 @@ export const query = graphql`
         data: gatsbyImageData
       }
     }
+    people: allContentfulPerson {
+      nodes {
+        ...personLink
+      }
+    }
+  }
+  fragment personLink on ContentfulPerson {
+    id
+    name
+    slug
   }
 `
 
