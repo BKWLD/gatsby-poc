@@ -6,9 +6,9 @@ export default function Person({ data }) {
   return (
     <main>
       <h1>{ data.person.name }</h1>
-      <GatsbyImage
+      { data.person.image && <GatsbyImage
         image={ data.person.image.data }
-        alt={ data.person.image.alt || "" }/>
+        alt={ data.person.image.alt || "" }/> }
     </main>
   )
 }
