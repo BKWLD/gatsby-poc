@@ -1,10 +1,12 @@
 import * as React from "react"
 import { graphql } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
+import { Link } from "gatsby"
 
 export default function Person({ data }) {
   return (
     <main>
+      <Link to='/'>Home</Link>
       <h1>{ data.person.name }</h1>
       { data.person.image && <GatsbyImage
         image={ data.person.image.data }
@@ -20,8 +22,7 @@ export const query = graphql`
     }
   }
   fragment personCard on ContentfulPerson {
-    id
-    name
+    ...personLink
     image {
       alt: title
       data: gatsbyImageData(width: 200)

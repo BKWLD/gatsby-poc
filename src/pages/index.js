@@ -30,9 +30,7 @@ const IndexPage = ({ data }) => {
       <ul>
         { data.people.nodes.filter(person => !!person.name).map(person => (
           <li key={ person.id }>
-            <Link to={`/people/${person.slug}`}>
-              { person.name }
-            </Link>
+            <Link to={ person.url }>{ person.name }</Link>
           </li>
         ))}
       </ul>
@@ -62,6 +60,7 @@ export const query = graphql`
     id
     name
     slug
+    url: gatsbyPath(filePath:"/people/{contentfulPerson.slug}")
   }
 `
 
