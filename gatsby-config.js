@@ -1,4 +1,4 @@
-require("dotenv").config()
+require('dotenv-vault-core').config()
 
 module.exports = {
   siteMetadata: {
