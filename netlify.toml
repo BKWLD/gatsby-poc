@@ -1,0 +1,3 @@
+# Explictly add gatsby plugin
+[[plugins]]
+package = "@netlify/plugin-gatsby"
