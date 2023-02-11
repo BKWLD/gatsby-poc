@@ -1,4 +1,4 @@
-// require('dotenv-vault-core').config()
+require('dotenv-vault-core').config()
 
 module.exports = {
   siteMetadata: {
@@ -23,16 +23,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sitemap",
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        "icon": "src/images/icon.png"
-      }
-    },
-    "gatsby-plugin-mdx",
     {
       resolve: 'gatsby-source-filesystem',
       options: {

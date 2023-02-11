@@ -33,10 +33,10 @@ export const query = graphql`
 
 // Defer generating all person detail pages but my own. FWIW, we could run
 // GQL here and base it the result of that query
-export function config() {
-  return ({ params }) => {
-    return {
-      defer: true,
-    }
-  }
-}
+// export async function config() {
+//   return ({ params }) => {
+//     return {
+//       defer: true,
+//     }
+//   }
+// }
