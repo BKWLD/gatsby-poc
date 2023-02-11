@@ -2,10 +2,10 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby POC`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `Gatsby POC`
   },
   plugins: [
+    'gatsby-plugin-netlify',
     {
       resolve: 'gatsby-source-contentful',
       options: {
@@ -49,6 +49,5 @@ module.exports = {
       },
       __key: "pages"
     },
-    'gatsby-plugin-netlify',
   ]
 }
