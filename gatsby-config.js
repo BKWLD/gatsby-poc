@@ -6,7 +6,8 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-netlify',
-    {
+
+    { // Contentful source
       resolve: 'gatsby-source-contentful',
       options: {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -14,7 +15,8 @@ module.exports = {
         host: process.env.CONTENTFUL_HOST
       }
     },
-    {
+
+    { // Shopify source
       resolve: "gatsby-source-shopify",
       options: {
         password: process.env.SHOPIFY_APP_PASSWORD,
@@ -22,6 +24,16 @@ module.exports = {
         salesChannel: process.env.SHOPIFY_APP_ID,
       },
     },
+
+    { // Craft source (Bukwild)
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: 'CraftBukwild',
+        fieldName: 'craftBukwild',
+        url: process.env.BUKWILD_CRAFT_ENDPOINT,
+      }
+    },
+
     "gatsby-plugin-image",
     {
       resolve: 'gatsby-source-filesystem',

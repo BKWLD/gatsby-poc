@@ -26,11 +26,21 @@ const IndexPage = ({ data }) => {
       </div>
 
       {/* Creating links to dynamic routes */}
-      <h2>Other people</h2>
+      <h2>People from previous Bukwild site</h2>
       <ul>
         { data.people.nodes.filter(person => !!person.name).map(person => (
           <li key={ person.id }>
             <Link to={ person.url }>{ person.name }</Link>
+          </li>
+        ))}
+      </ul>
+
+      {/* Fetching data using generic GQL source */}
+      <h2>Recent Bukwild articles</h2>
+      <ul>
+        { data.craftBukwild.articles.map(article => (
+          <li key={ article.id }>
+            <Link to={ article.url }>{ article.title }</Link>
           </li>
         ))}
       </ul>
@@ -53,6 +63,13 @@ export const query = graphql`
     people: allContentfulPerson {
       nodes {
         ...personLink
+      }
+    }
+    craftBukwild {
+      articles: entries(section: "articles", limit: 5) {
+        id
+        title
+        url
       }
     }
   }
