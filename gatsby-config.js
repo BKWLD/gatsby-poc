@@ -1,5 +1,9 @@
 require('dotenv-vault-core').config()
 
+// Debugging Gatsby cloud
+console.log('Debugging Gatsby cloud')
+console.log(process.env.BUKWILD_CRAFT_ENDPOINT)
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby POC`
