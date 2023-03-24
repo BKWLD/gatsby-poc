@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 
-const IndexPage = ({ data }) =>
+const IndexPage = ({ data }) => {
   return (
     <main style={pageStyles}>
 
